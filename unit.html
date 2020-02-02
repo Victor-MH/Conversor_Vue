@@ -8,7 +8,7 @@
             <p>Incluyendo decimales!!</p>
             <input type="text" v-model="ingreso">
             <p>Decimal: {{ ingreso }}</p>
-            <p>Binario: {{ ingreso }}</p>
+            <p>Binario: {{ deci_bin }}</p>
             <p>Octal: {{ ingreso }}</p>
             <p>Hexadecimal: {{ ingreso }}</p>
         </div>
@@ -19,8 +19,32 @@
 
                 data(){
                     return{
-                     ingreso: 0,   
+                     ingreso: 0,
+                     bin:0
                     }
+                },
+
+                computed: {
+                    deci_bin(){ //código para convertir de sistema decimal a binario
+                        let divisor = 2, dividendo = parseInt(this.ingreso), residuo=[], resultado;
+                
+                        do{
+                            resultado = dividendo % divisor;
+                            dividendo = Math.floor(dividendo / divisor);
+                            resultado.toString();
+                            residuo.push(resultado);
+
+                        }while(dividendo > 0)
+
+                        residuo.reverse();
+                        return residuo.join('')
+                    }
+
+
+                },
+
+                methods: {
+                    
                 }
             })
         </script>
