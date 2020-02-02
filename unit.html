@@ -5,12 +5,12 @@
     <body>
         <div id="app">
             <p>Convierte unidades en tiempo real!</p>
-            <p>Incluyendo decimales!!</p>
+            <p>Incluyendo decimales!! <br> Bueno... aún no</p>
             <input type="text" v-model="ingreso">
             <p>Decimal: {{ ingreso }}</p>
             <p>Binario: {{ deci_bin }}</p>
             <p>Octal: {{ deci_octal }}</p>
-            <p>Hexadecimal: {{ ingreso }}</p>
+            <p>Hexadecimal: {{ deci_hex }}</p>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script>
@@ -52,7 +52,31 @@
 
                         residuo.reverse();
                         return residuo.join('')
+                    },
+
+                    deci_hex(){ //código para convertir de sistema decimal a hexadecimal
+                        let divisor = 16, dividendo = parseInt(this.ingreso), residuo=[], resultado;
+                        
+                        do{
+                            resultado = dividendo % divisor;
+                            dividendo = Math.floor(dividendo / divisor);
+                        
+                            if(resultado === 10) { resultado = 'A' }
+                            if(resultado === 11) { resultado = 'B' }
+                            if(resultado === 12) { resultado = 'C' }
+                            if(resultado === 13) { resultado = 'D' }
+                            if(resultado === 14) { resultado = 'E' }
+                            if(resultado === 15) { resultado = 'F' } 
+
+                            resultado.toString();
+                            residuo.push(resultado);
+
+                        }while(dividendo > 0)
+
+                        residuo.reverse();
+                        return residuo.join('')
                     }
+
                 }
             })
         </script>
