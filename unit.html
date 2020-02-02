@@ -9,7 +9,7 @@
             <input type="text" v-model="ingreso">
             <p>Decimal: {{ ingreso }}</p>
             <p>Binario: {{ deci_bin }}</p>
-            <p>Octal: {{ ingreso }}</p>
+            <p>Octal: {{ deci_octal }}</p>
             <p>Hexadecimal: {{ ingreso }}</p>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -19,8 +19,7 @@
 
                 data(){
                     return{
-                     ingreso: 0,
-                     bin:0
+                     ingreso: 0
                     }
                 },
 
@@ -38,13 +37,22 @@
 
                         residuo.reverse();
                         return residuo.join('')
+                    },
+
+                    deci_octal(){ //código para convertir de sistema decimal a octal
+                        let divisor = 8, dividendo = parseInt(this.ingreso), residuo=[], resultado;
+                
+                        do{
+                            resultado = dividendo % divisor;
+                            dividendo = Math.floor(dividendo / divisor);
+                            resultado.toString();
+                            residuo.push(resultado);
+
+                        }while(dividendo > 0)
+
+                        residuo.reverse();
+                        return residuo.join('')
                     }
-
-
-                },
-
-                methods: {
-                    
                 }
             })
         </script>
