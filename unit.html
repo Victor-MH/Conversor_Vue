@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Conversor de unidades</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>Convierte unidades en tiempo real!</p>
+            <p>Incluyendo decimales!!</p>
+            <input type="text" v-model="ingreso">
+            <p>Decimal: {{ ingreso }}</p>
+            <p>Binario: {{ ingreso }}</p>
+            <p>Octal: {{ ingreso }}</p>
+            <p>Hexadecimal: {{ ingreso }}</p>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+
+                data(){
+                    return{
+                     ingreso: 0,   
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
