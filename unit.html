@@ -9,7 +9,7 @@
             <input type="text" v-model="ingreso">
             <p>Decimal: {{ ingreso }}</p>
             <p>Binario: {{ deci_bin }}</p>
-            <p>Octal: {{ deci_octal }}</p>
+            <p>Octal: {{ deci_oct }}</p>
             <p>Hexadecimal: {{ deci_hex }}</p>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -24,59 +24,46 @@
                 },
 
                 computed: {
-                    deci_bin(){ //código para convertir de sistema decimal a binario
-                        let divisor = 2, dividendo = parseInt(this.ingreso), residuo=[], resultado;
-                
-                        do{
-                            resultado = dividendo % divisor;
-                            dividendo = Math.floor(dividendo / divisor);
-                            resultado.toString();
-                            residuo.push(resultado);
-
-                        }while(dividendo > 0)
-
-                        residuo.reverse();
-                        return residuo.join('')
+                    deci_bin(){ 
+                        return this.decimal_a_x(2);
                     },
 
-                    deci_octal(){ //código para convertir de sistema decimal a octal
-                        let divisor = 8, dividendo = parseInt(this.ingreso), residuo=[], resultado;
-                
-                        do{
-                            resultado = dividendo % divisor;
-                            dividendo = Math.floor(dividendo / divisor);
-                            resultado.toString();
-                            residuo.push(resultado);
-
-                        }while(dividendo > 0)
-
-                        residuo.reverse();
-                        return residuo.join('')
+                    deci_oct(){
+                        return this.decimal_a_x(8);
                     },
 
-                    deci_hex(){ //código para convertir de sistema decimal a hexadecimal
-                        let divisor = 16, dividendo = parseInt(this.ingreso), residuo=[], resultado;
-                        
-                        do{
-                            resultado = dividendo % divisor;
-                            dividendo = Math.floor(dividendo / divisor);
-                        
-                            if(resultado === 10) { resultado = 'A' }
-                            if(resultado === 11) { resultado = 'B' }
-                            if(resultado === 12) { resultado = 'C' }
-                            if(resultado === 13) { resultado = 'D' }
-                            if(resultado === 14) { resultado = 'E' }
-                            if(resultado === 15) { resultado = 'F' } 
-
-                            resultado.toString();
-                            residuo.push(resultado);
-
-                        }while(dividendo > 0)
-
-                        residuo.reverse();
-                        return residuo.join('')
+                    deci_hex(){
+                        return this.decimal_a_x(16);
                     }
 
+                },
+
+                methods: {
+                    decimal_a_x(div){//código para convertir de sistema decimal a otros
+                        let divisor = div, dividendo = parseInt(this.ingreso), residuo=[], resultado;
+                
+                        do{
+                            resultado = dividendo % divisor;
+                            dividendo = Math.floor(dividendo / divisor);
+                            
+                            if(div == 16){
+                                if(resultado === 10) { resultado = 'A' }
+                                if(resultado === 11) { resultado = 'B' }
+                                if(resultado === 12) { resultado = 'C' }
+                                if(resultado === 13) { resultado = 'D' }
+                                if(resultado === 14) { resultado = 'E' }
+                                if(resultado === 15) { resultado = 'F' }
+                            }
+
+                            resultado.toString();
+                            residuo.push(resultado);
+
+                        }while(dividendo > 0)
+
+                        residuo.reverse();
+                        return residuo.join('');
+
+                    }
                 }
             })
         </script>
