@@ -29,8 +29,7 @@
             font-family: Helvetica;
             border: 2px solid blue;
             border-radius: 5px;
-            outline: none;
-    
+            outline: none;    
         }
     
         input:focus {
@@ -43,7 +42,7 @@
         <div id="app">
             <h1>Convierte unidades en tiempo real!</h1>
             <h2>Incluyendo decimales!! <br> Bueno... aún no</h2>
-            <input type="number" v-model="ingreso" min="0" style="box-sizing: border-box;">
+            <input type="number" v-model="ingreso" min="0">
             <p>Decimal: {{ ingreso }}</p>
             <p>Binario: {{ deci_bin }}</p>
             <p>Octal: {{ deci_oct }}</p>
@@ -91,8 +90,7 @@
                                 if(resultado === 14) { resultado = 'E' }
                                 if(resultado === 15) { resultado = 'F' }
                             }
-
-                            //resultado.toString();
+                            
                             residuo.push(resultado);
 
                         }while(dividendo > 0)
