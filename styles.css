@@ -1,0 +1,45 @@
+body {
+    background-color: #666;
+}
+h1 {
+    font-family: Helvetica;
+}
+
+h2 {
+    font-family: Helvetica;
+    text-decoration: underline;
+    padding: 10px ;
+    background-color: aquamarine;
+    width: 22%;
+    height: 4%;
+}
+h3 {
+    font-family: Helvetica;
+    
+}
+body {
+    padding: 15px 20px;
+}
+
+p { padding: 0px 5px;
+    font-size: x-large;
+    font-weight: bold;
+    font-family: Helvetica;
+    letter-spacing: 1px;
+    }
+
+input {
+    width: 20%;
+    padding: 5px 10px;
+    font-size: large;
+    font-weight: bold;
+    font-family: Helvetica;
+    border: 2px solid blue;
+    border-radius: 5px;
+    outline: none;    
+}
+
+input:focus {
+    border: 2px solid purple;
+    border-radius: 5px;
+}
