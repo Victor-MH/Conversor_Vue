@@ -80,17 +80,14 @@ new Vue({
 
             }while(dividendo > 0)
 
-            residuo.reverse();
-            return residuo.join('');
+            return residuo.reverse().join('');
 
         },
 
         bin_x(){//código para convertir de sistema binario a otros
             let resultado
             let binario = Math.floor(Math.abs(this.ingreso_bin));
-            binario = binario.toString();
-            binario = binario.split("");
-            binario.reverse();
+            binario = binario.toString().split("").reverse();
 
             binario = binario.map( (value) => {
                 return parseInt(value)
@@ -112,6 +109,10 @@ new Vue({
                 }
             }
             return resultado;
+
+            //BUG! BUG! Error a partir de 21-22 dígitos
         }
     }
 })
+
+
