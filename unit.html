@@ -22,6 +22,15 @@
             <p>Octal: {{ bin_oct }}</p>
             <p>Hexadecimal: {{ bin_hex }}</p>
 
+            <Sistema 
+                title="Octal" 
+                v-model="ingreso_oct"
+                :dec="oct_deci"
+                :bin="oct_bin"
+                :oct="ingreso_oct"
+                :hex="oct_hex">
+            </Sistema>
+
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="app.js"></script>

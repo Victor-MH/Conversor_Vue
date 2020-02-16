@@ -1,10 +1,30 @@
+Vue.component('Sistema', {
+    props: [ 'title', 'value', 'dec', 'bin', 'oct', 'hex'],
+    
+    template: `
+                <div>
+                    <h2>Sistema {{ title }}</h2>
+                    <input type="number" min="0"
+                        v-bind:value="value"
+                        v-on:input="$emit('input', $event.target.value)">
+                    <p>Decimal:  {{dec}} </p>
+                    <p>Binario:  {{bin}} </p>
+                    <p>Octal:  {{oct}} </p>
+                    <p>Hexadecimal:  {{hex}} </p>
+                </div>   
+                `
+})
+
+
+
 new Vue({
     el: '#app',
 
     data(){
         return{
          ingreso: 0,
-         ingreso_bin:0
+         ingreso_bin: 0,
+         ingreso_oct: 0
         }
     },
 
@@ -46,7 +66,7 @@ new Vue({
         },
 
         bin_deci(){
-            return this.bin_x();
+            return this.bin_x(2, this.ingreso_bin);
         },
 
         bin_oct(){
@@ -55,6 +75,19 @@ new Vue({
 
         bin_hex(){
             return this.decimal_a_x(16, this.bin_deci);
+        },
+
+
+        oct_deci(){
+            return this.bin_x(8, this.ingreso_oct);
+        },
+
+        oct_bin(){
+            return this.decimal_a_x(2, this.oct_deci);
+        },
+
+        oct_hex(){
+            return this.decimal_a_x(16, this.oct_deci);
         }
 
     },
@@ -84,22 +117,22 @@ new Vue({
 
         },
 
-        bin_x(){//código para convertir de sistema binario a otros
+        bin_x(base, source){//código para convertir de un sistema x a decimal
             let resultado
-            let binario = Math.floor(Math.abs(this.ingreso_bin));
+            let binario = Math.floor(Math.abs(source));
             binario = binario.toString().split("").reverse();
 
             binario = binario.map( (value) => {
                 return parseInt(value)
             } )
 
-            const validacion = binario.some( (value) => value > 1 );
+            const validacion = binario.some( (value) => value > (base-1) );
 
             if(validacion){
                 resultado = "Ingresaste un número no binario, intenta de nuevo";
             }else{
                 for(let i = 0; i < binario.length; i++){
-                    binario[i] = Math.pow(2, i) * binario[i];
+                    binario[i] = Math.pow(base, i) * binario[i];
                 }
 
                 if(binario[0] != null){
@@ -113,6 +146,6 @@ new Vue({
             //BUG! BUG! Error a partir de 21-22 dígitos
         }
     }
-})
+});
 
 
