@@ -26,6 +26,7 @@ p { padding: 0px 5px;
     font-weight: bold;
     font-family: Helvetica;
     letter-spacing: 1px;
+    line-height: 1.75em;
     }
 
 input {

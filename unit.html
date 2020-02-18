@@ -8,19 +8,23 @@
             <h1>Convierte unidades en tiempo real!</h1>
             <h3>Incluyendo decimales!! <br> Bueno... aún no</h3>
 
-            <h2>Sistema Decimal</h2>
-            <input type="number" v-model="ingreso" min="0">
-            <p>Decimal: {{ ingreso }}</p>
-            <p>Binario: {{ deci_bin }}</p>
-            <p>Octal: {{ deci_oct }}</p>
-            <p>Hexadecimal: {{ deci_hex }}</p>
+            <Sistema
+                title="Decimal"
+                v-model="ingreso"
+                :Dec="ingreso"
+                :bin="deci_bin"
+                :oct="deci_oct"
+                :hex="deci_hex"
+            ></Sistema>
 
-            <h2>Sistema Binario</h2>
-            <input type="number" v-model="ingreso_bin" min="0">
-            <p>Decimal: {{ bin_deci }}</p>
-            <p>Binario: {{ bin }}</p>
-            <p>Octal: {{ bin_oct }}</p>
-            <p>Hexadecimal: {{ bin_hex }}</p>
+            <Sistema
+                title="Binario"
+                v-model="ingreso_bin"
+                :dec="bin_deci"
+                :bin="bin"
+                :oct="bin_oct"
+                :hex="bin_hex"
+            ></Sistema>
 
             <Sistema 
                 title="Octal" 
@@ -28,8 +32,8 @@
                 :dec="oct_deci"
                 :bin="oct_bin"
                 :oct="ingreso_oct"
-                :hex="oct_hex">
-            </Sistema>
+                :hex="oct_hex"
+            ></Sistema>
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

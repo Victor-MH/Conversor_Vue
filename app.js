@@ -7,10 +7,10 @@ Vue.component('Sistema', {
                     <input type="number" min="0"
                         v-bind:value="value"
                         v-on:input="$emit('input', $event.target.value)">
-                    <p>Decimal:  {{dec}} </p>
-                    <p>Binario:  {{bin}} </p>
-                    <p>Octal:  {{oct}} </p>
-                    <p>Hexadecimal:  {{hex}} </p>
+                    <p>Decimal:  {{dec}} </br>
+                       Binario:  {{bin}} </br>
+                       Octal:  {{oct}} </br>
+                       Hexadecimal:  {{hex}} </p>
                 </div>   
                 `
 })
