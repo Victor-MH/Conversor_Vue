@@ -1,10 +1,15 @@
 Vue.component('Sistema', {
-    props: [ 'title', 'value', 'dec', 'bin', 'oct', 'hex'],
+    props: [ 'title', 'value', 'tipo', 'dec', 'bin', 'oct', 'hex'],
     
     template: `
                 <div>
                     <h2>Sistema {{ title }}</h2>
                     <input type="number" min="0"
+                        v-if="tipo=='number'"
+                        v-bind:value="value"
+                        v-on:input="$emit('input', $event.target.value)">
+                    <input type="text" 
+                        v-else-if="tipo=='text'"
                         v-bind:value="value"
                         v-on:input="$emit('input', $event.target.value)">
                     <p>Decimal:  {{dec}} </br>
@@ -24,7 +29,8 @@ new Vue({
         return{
          ingreso: 0,
          ingreso_bin: 0,
-         ingreso_oct: 0
+         ingreso_oct: 0,
+         ingreso_hex:0
         }
     },
 
@@ -88,7 +94,22 @@ new Vue({
 
         oct_hex(){
             return this.decimal_a_x(16, this.oct_deci);
-        }
+        },
+
+
+        hex_deci(){
+            return 0
+        },
+
+        hex_bin(){
+            return 0
+        },
+
+        hex_oct(){
+            return 0
+        },
+
+        
 
     },
 

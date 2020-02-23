@@ -11,6 +11,7 @@
             <Sistema
                 title="Decimal"
                 v-model="ingreso"
+                tipo='number'
                 :Dec="ingreso"
                 :bin="deci_bin"
                 :oct="deci_oct"
@@ -20,6 +21,7 @@
             <Sistema
                 title="Binario"
                 v-model="ingreso_bin"
+                tipo='number'
                 :dec="bin_deci"
                 :bin="bin"
                 :oct="bin_oct"
@@ -29,10 +31,21 @@
             <Sistema 
                 title="Octal" 
                 v-model="ingreso_oct"
+                tipo='number'
                 :dec="oct_deci"
                 :bin="oct_bin"
                 :oct="ingreso_oct"
                 :hex="oct_hex"
+            ></Sistema>
+
+            <Sistema
+                title="Hexadecimal"
+                v-model="ingreso_hex"
+                tipo='text'
+                :dec="hex_deci"
+                :bin="hex_bin"
+                :oct="hex_oct"
+                :hex="ingreso_hex"
             ></Sistema>
 
         </div>
