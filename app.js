@@ -67,12 +67,10 @@ new Vue({
                 resultado = this.ingreso_bin;
             }
             return resultado;
-            
-            
         },
 
         bin_deci(){
-            return this.bin_x(2, this.ingreso_bin);
+            return this.bin_x(2, this.ingreso_bin, "binario");
         },
 
         bin_oct(){
@@ -85,7 +83,7 @@ new Vue({
 
 
         oct_deci(){
-            return this.bin_x(8, this.ingreso_oct);
+            return this.bin_x(8, this.ingreso_oct, "octal");
         },
 
         oct_bin(){
@@ -98,15 +96,15 @@ new Vue({
 
 
         hex_deci(){
-            return 0
+            return this.bin_x(16, this.ingreso_hex);
         },
 
         hex_bin(){
-            return 0
+            return this.decimal_a_x(2, this.hex_deci);
         },
 
         hex_oct(){
-            return 0
+            return this.decimal_a_x(8, this.hex_deci,);
         },
 
         
@@ -138,10 +136,24 @@ new Vue({
 
         },
 
-        bin_x(base, source){//código para convertir de un sistema x a decimal
-            let resultado
-            let binario = Math.floor(Math.abs(source));
+        bin_x(base, source, mensaje){//código para convertir de un sistema x a decimal
+            let resultado, binario;
+            if(base == 16){
+                binario = source;
+                binario = binario.toString().split("").reverse();
+
+                for(let i = 0; i < binario.length; i++){
+                    if( binario[i] == 'A' | binario[i] == 'a') { binario[i] = 10 }
+                    if( binario[i] == 'B' | binario[i] == 'b') { binario[i] = 11 }
+                    if( binario[i] == 'C' | binario[i] == 'c') { binario[i] = 12 }
+                    if( binario[i] == 'D' | binario[i] == 'd') { binario[i] = 13 }
+                    if( binario[i] == 'E' | binario[i] == 'e') { binario[i] = 14 }
+                    if( binario[i] == 'F' | binario[i] == 'f') { binario[i] = 15}
+                }
+            } else {
+            binario = Math.floor(Math.abs(source));
             binario = binario.toString().split("").reverse();
+            }
 
             binario = binario.map( (value) => {
                 return parseInt(value)
@@ -150,7 +162,7 @@ new Vue({
             const validacion = binario.some( (value) => value > (base-1) );
 
             if(validacion){
-                resultado = "Ingresaste un número no binario, intenta de nuevo";
+                resultado = "Ingresaste un número no " + mensaje + ", intenta de nuevo";
             }else{
                 for(let i = 0; i < binario.length; i++){
                     binario[i] = Math.pow(base, i) * binario[i];
